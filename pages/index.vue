@@ -2,19 +2,21 @@
   <section
     class="cover bg-blue-teal-gradient relative bg-blue-600 px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 overflow-hidden py-48 flex items-center min-h-screen"
   >
-    <div class="lg:w-3/4 xl:w-2/4 relative z-10 h-100 lg:mt-16">
-      <div>
-        <h1 class="text-white text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">
-          Dr Now. Connecting healthcare.
-        </h1>
-        <p class="text-blue-100 text-xl md:text-2xl leading-snug mt-4">
-          Find your Doctor and Book appointment now.
-        </p>
-        <a
-          href="#"
-          class="px-8 py-4 bg-teal-500 text-white rounded inline-block mt-8 font-semibold"
-          >Book Appointment</a
-        >
+    <div class="container mx-auto p-4">
+      <div class="lg:w-3/4 xl:w-2/4 relative z-10 h-100 lg:mt-16">
+        <div>
+          <h1 class="text-white text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">
+            Dr Now. Connecting healthcare.
+          </h1>
+          <p class="text-blue-100 text-xl md:text-2xl leading-snug mt-4">
+            Find your Doctor and Book appointment now.
+          </p>
+          <a
+            href="#"
+            class="px-8 py-4 bg-teal-500 text-white rounded inline-block mt-8 font-semibold"
+            >Book Appointment</a
+          >
+        </div>
       </div>
     </div>
     <div

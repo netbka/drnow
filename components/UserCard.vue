@@ -1,9 +1,9 @@
 <template>
-  <div v-if="user" class="rounded p-3 flex items-center space-x-3 bg-white">
-    <img class="rounded-full w-3" :src="profile" />
+  <div v-if="user" class="rounded px-3 flex items-center space-x-3 shadow">
+    <img class="rounded-full w-8" :src="profile" />
     <div class="text-right">
       <div class="font-medium">{{ name }}</div>
-      <button class="text-sm underline text-slate-500" @click="logout">Log out</button>
+      <!-- <button class="text-sm underline text-slate-500" @click="logout">Log out</button> -->
     </div>
   </div>
 </template>

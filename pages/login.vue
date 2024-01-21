@@ -100,7 +100,7 @@ definePageMeta({
   layout: "auth",
 });
 
-const supabase = useSupabaseClient();
+const supabase = useSupabaseClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 const login = async () => {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "github",

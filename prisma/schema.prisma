@@ -4,5 +4,33 @@ datasource db {
 }
 
 generator client {
-    provider = "prisma-client-js"
+    provider      = "prisma-client-js"
+    binaryTargets = ["native", "darwin-arm64"]
+    output        = "../node_modules/.prisma/client"
+}
+
+model User {
+    id        Int      @id @default(autoincrement())
+    email     String   @unique
+    name      String?
+    profile   Profile?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Profile {
+    id   Int       @id @default(autoincrement())
+    bio  String?
+    bday DateTime?
+    user      User     @relation(fields: [userId], references: [id])
+    userId    Int      @unique
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Specs {
+    id        Int      @id @default(autoincrement())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }

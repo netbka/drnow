@@ -2,7 +2,7 @@
 import vsharp from "vite-plugin-vsharp";
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@nuxtjs/supabase", "@nuxtjs/fontaine", "@nuxtjs/google-fonts"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@nuxtjs/supabase"],
   image: {
     dir: "assets/images",
   },
@@ -23,16 +23,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  // fontMetrics: {
-  //   fonts: ["DM Sans"],
-  // },
-  // googleFonts: {
-  //   display: "swap",
-  //   download: true,
-  //   families: {
-  //     "DM+Sans": [300, 400, 500, 600, 700],
-  //   },
-  // },
+
   vite: {
     plugins: [vsharp()],
   },

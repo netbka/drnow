@@ -1,7 +1,10 @@
 <template>
   <div class="flex">
     <NuxtLink to="/" class="flex gap-2">
-      <NuxtImg src="logo64.png"></NuxtImg> <slot></slot
+      <img :src="logo" class="h-10" /> <slot></slot
     ></NuxtLink>
   </div>
 </template>
+<script setup>
+import logo from "~/assets/images/logosmall.png";
+</script>

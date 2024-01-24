@@ -3,25 +3,18 @@
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
       <q-input
         filled
-        v-model="name"
+        v-model="fname"
         label="Your name *"
         hint="Name and surname"
         lazy-rules
       />
-      <!--
       <q-input
         filled
-        type="number"
-        v-model="age"
-        label="Your age *"
+        v-model="lname"
+        label="Your name *"
+        hint="Name and surname"
         lazy-rules
-        :rules="[
-          (val) => (val !== null && val !== '') || 'Please type your age',
-          (val) => (val > 0 && val < 100) || 'Please type a real age',
-        ]"
       />
-
-      <q-toggle v-model="accept" label="I accept the license and terms" /> -->
 
       <div>
         <q-btn label="Submit" type="submit" color="primary" />
@@ -32,13 +25,35 @@
 </template>
 
 <script setup>
-definePageMeta({ auth: true });
-const name = ref(null);
-const age = ref(null);
+let fname = ref("");
+let lname = ref("");
 const accept = ref(false);
 
-const onSubmit = () => {
-  console.log("Submitted");
+const { data } = await useFetch("/api/user", {
+  method: "get",
+});
+
+watch(
+  () => data.value,
+  (val) => {
+    fname.value = val.fname;
+    lname.value = val.lname;
+  }
+);
+
+// watch(data,  (new) => {
+//   fname = new.fname;
+//   lname = new.lname;
+// })
+
+const onSubmit = async () => {
+  await useFetch("/api/user", {
+    method: "post",
+    body: {
+      fname: fname,
+      lname: lname,
+    },
+  });
 };
 
 const onReset = () => {

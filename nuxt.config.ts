@@ -1,11 +1,31 @@
+//import { quasar } from "@quasar/vite-plugin";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import vsharp from "vite-plugin-vsharp";
+
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@nuxtjs/supabase"],
-  image: {
-    dir: "assets/images",
+  typescript: {
+    shim: false,
   },
+  devtools: { enabled: true },
+  modules: ["@nuxtjs/supabase", "nuxt-quasar-ui"],
+  // image: {
+  //   dir: "assets/images",
+  // },
+  quasar: {
+    plugins: ["BottomSheet", "Dialog", "Loading", "LoadingBar", "Notify", "Dark"],
+    extras: {
+      font: "roboto-font",
+    },
+    components: {
+      defaults: {
+        QBtn: {
+          unelevated: true,
+        },
+      },
+    },
+  },
+  ssr: true,
+  css: ["@quasar/extras/material-icons/material-icons.css", "~/assets/styles/quasar.sass"],
   runtimeConfig: {
     dbPassword: process.env.DB_PASSWORD,
   },
@@ -23,10 +43,16 @@ export default defineNuxtConfig({
       ],
     },
   },
-
-  vite: {
-    plugins: [vsharp()],
+  build: {
+    transpile: ["quasar"],
   },
+  // vite: {
+  //   define: {
+  //     "process.env.DEBUG": false,
+  //   },
+  //   plugins: [quasar({ sassVariables: "assets/styles/quasar.variables.sass" })],
+  // },
+  // ssr: true,
   supabase: {
     // cookieOptions: {
     //   name: 'test',

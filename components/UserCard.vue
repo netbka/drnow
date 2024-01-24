@@ -15,7 +15,6 @@ const { auth } = useSupabaseClient();
 const name = computed(() => user.value?.user_metadata.full_name);
 const profile = computed(() => user.value?.user_metadata.avatar_url);
 
-
 const logout = async () => {
   const { error } = await auth.signOut();
   if (error) {

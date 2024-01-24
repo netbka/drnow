@@ -11,21 +11,22 @@ generator client {
 
 model User {
     id        Int      @id @default(autoincrement())
-    email     String   @unique
-    name      String?
+    userEmail String   @unique
+    fname     String?
+    lname     String?
     profile   Profile?
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
 
 model Profile {
-    id   Int       @id @default(autoincrement())
-    bio  String?
-    bday DateTime?
-    user      User     @relation(fields: [userId], references: [id])
-    userId    Int      @unique
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id        Int       @id @default(autoincrement())
+    bio       String?
+    bday      DateTime?
+    user      User      @relation(fields: [userId], references: [id])
+    userId    Int       @unique
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
 }
 
 model Specs {

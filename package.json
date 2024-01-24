@@ -10,13 +10,17 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxt/image": "^1.0.0-rc.3",
     "@nuxtjs/supabase": "^1.1.5",
-    "@nuxtjs/tailwindcss": "^6.10.4",
     "@prisma/client": "^5.8.1",
+    "@quasar/vite-plugin": "^1.6.0",
     "nuxt": "^3.9.1",
-    "vite-plugin-vsharp": "^1.7.3",
+    "nuxt-quasar-ui": "^2.0.7",
     "vue": "^3.4.10",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.9",
+    "quasar": "^2.14.2",
+    "sass": "^1.70.0"
   }
 }

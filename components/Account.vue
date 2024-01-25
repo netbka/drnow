@@ -3,17 +3,15 @@
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
       <q-input
         filled
-        v-model="fname"
+        v-model="store.currentUser.fname"
         label="Your name *"
         hint="Name and surname"
-        lazy-rules
       />
       <q-input
         filled
-        v-model="lname"
+        v-model="store.currentUser.lname"
         label="Your name *"
         hint="Name and surname"
-        lazy-rules
       />
 
       <div>
@@ -25,21 +23,29 @@
 </template>
 
 <script setup>
+import { useUserStore } from "~/stores/user";
+
 let fname = ref("");
 let lname = ref("");
-const accept = ref(false);
 
-const { data } = await useFetch("/api/user", {
-  method: "get",
+//const { fetchCurrentUser } = storeToRefs(useUserStore());
+const store = useUserStore();
+// const { data } = await useFetch("/api/user", {
+//   method: "get",
+// });
+onMounted(async () => {
+  // store.fetchCurrentUser();
+  //  console.log(store.currentUser);
+  //console.log(fetchCurrentUser);
 });
 
-watch(
-  () => data.value,
-  (val) => {
-    fname.value = val.fname;
-    lname.value = val.lname;
-  }
-);
+// watch(
+//   () => data.value,
+//   (val) => {
+//     store.currentUser = val;
+//     console.log(store.currentUser);
+//   }
+// );
 
 // watch(data,  (new) => {
 //   fname = new.fname;
@@ -47,12 +53,12 @@ watch(
 // })
 
 const onSubmit = async () => {
+  console.log("Submit");
   await useFetch("/api/user", {
     method: "post",
-    body: {
-      fname: fname,
-      lname: lname,
-    },
+    body: store.currentUser,
+    lazy: true,
+    server: false,
   });
 };
 

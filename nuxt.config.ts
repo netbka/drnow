@@ -7,7 +7,11 @@ export default defineNuxtConfig({
     shim: false,
   },
   devtools: { enabled: true },
-  modules: ["@nuxtjs/supabase", "nuxt-quasar-ui"],
+  modules: ["@nuxtjs/supabase", "nuxt-quasar-ui", "@pinia/nuxt"],
+  plugins: [
+    "~/plugins/prisma-client.ts",
+    // ... other plugins
+  ],
   // image: {
   //   dir: "assets/images",
   // },

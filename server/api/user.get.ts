@@ -6,7 +6,6 @@ export default defineEventHandler(async (event) => {
     user: { email: userEmail },
   } = event.context;
 
-  //console.log("userEmail", userEmail);
   return await prisma.user.findUnique({
     where: {
       userEmail,

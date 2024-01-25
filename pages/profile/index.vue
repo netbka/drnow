@@ -49,6 +49,9 @@
 
 <script setup>
 definePageMeta({ auth: true });
+import { useUserStore } from "~/stores/user";
+const store = useUserStore();
+store.fetchCurrentUser();
 const tab = ref("acc");
 // const { data } = await useFetch("/api/user", {
 //   method: "get",

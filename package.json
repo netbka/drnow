@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@nuxtjs/supabase": "^1.1.5",
+    "@pinia/nuxt": "^0.5.1",
     "@prisma/client": "^5.8.1",
     "@quasar/vite-plugin": "^1.6.0",
     "nuxt": "^3.9.1",
@@ -20,6 +21,8 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.9",
+    "lodash": "^4.17.21",
+    "pinia": "^2.1.7",
     "quasar": "^2.14.2",
     "sass": "^1.70.0"
   }

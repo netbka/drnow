@@ -19,21 +19,29 @@
       </div>
     </div>
   </nav> -->
-  <q-header reveal elevated class="bg-primary text-white">
+  <q-header reveal elevated class="bg-primary text-accent">
     <q-toolbar>
       <q-toolbar-title>
         <q-avatar>
-          <img :src="profile" />
+          <img :src="logo" />
         </q-avatar>
-        {{ name }}
+        DRNOW
       </q-toolbar-title>
+
+      <NavBarMenu></NavBarMenu>
+      <q-separator dark vertical />
+      <q-btn stretch flat label="Link" />
+      <q-separator dark vertical />
+      <q-btn stretch flat label="Link" />
+      <q-btn flat round dense icon="whatshot" />
     </q-toolbar>
   </q-header>
 </template>
 
 <script lang="ts" setup>
-const user = useSupabaseUser();
+import logo from "/logosmall.png";
+// const user = useSupabaseUser();
 
-const name = computed(() => user.value?.user_metadata.full_name);
-const profile = computed(() => user.value?.user_metadata.avatar_url);
+// const name = computed(() => user.value?.user_metadata.full_name);
+// const profile = computed(() => user.value?.user_metadata.avatar_url);
 </script>

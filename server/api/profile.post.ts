@@ -7,14 +7,9 @@ export default defineEventHandler(async (event) => {
     user: { email: userEmail },
   } = event.context;
 
-  //get what triggered the event in defineEventHandler
-
-  // Now you can use the source information
-  console.log(event);
   const body = await readBody(event);
-  //body["userEmail"] = userEmail;
-  //console.log(body);
-  return await prisma.user.upsert({
+
+  return await prisma.profile.upsert({
     where: {
       userEmail,
     },

@@ -1,5 +1,3 @@
-import { PrismaClient } from "@prisma/client";
-
 const medicalSpecialties = [
   {
     name: "Anesthesiology",
@@ -84,52 +82,6 @@ const medicalSpecialties = [
   {
     name: "Psychiatry",
     description: "Specializes in the diagnosis and treatment of mental disorders.",
-    medicalsubspeciality: [
-      {
-        name: "Child and Adolescent Psychiatry",
-        description: "Specializes in the diagnosis and treatment of mental health issues in children and adolescents.",
-      },
-      {
-        name: "Geriatric Psychiatry",
-        description: "Focuses on the mental health needs of older adults, addressing issues such as dementia, depression, and anxiety in the elderly population.",
-      },
-      {
-        name: "Forensic Psychiatry",
-        description: "Involves the application of psychiatric principles to legal issues, often working with the legal system in areas such as criminal cases, civil cases, and court-ordered evaluations.",
-      },
-      {
-        name: "Addiction Psychiatry",
-        description: "Specializes in the treatment of individuals struggling with substance abuse or addiction issues.",
-      },
-      {
-        name: "Consultation-Liaison Psychiatry",
-        description: "Provides psychiatric assessment and treatment in the general hospital setting, often working with patients who have both medical and psychiatric conditions.",
-      },
-      {
-        name: "Psychosomatic Medicine",
-        description: "Focuses on the interplay between mental and physical health, addressing the impact of psychological factors on physical well-being.",
-      },
-      {
-        name: "Community Psychiatry",
-        description: "Involves working within community settings to address mental health needs and promote mental health awareness.",
-      },
-      {
-        name: "Emergency Psychiatry",
-        description: "Specializes in providing psychiatric care in emergency and crisis situations, such as in emergency departments or crisis intervention settings.",
-      },
-      {
-        name: "Sleep Medicine",
-        description: "Addresses sleep-related disorders and disturbances, working with individuals who experience sleep-related issues affecting their mental health.",
-      },
-      {
-        name: "Neuropsychiatry",
-        description: "Involves the study and treatment of psychiatric disorders related to brain function and neurological conditions.",
-      },
-      {
-        name: "Psychotherapy and Counseling",
-        description: "While not a separate subspecialty, many psychiatrists may choose to focus on various therapeutic modalities, such as cognitive-behavioral therapy (CBT), psychoanalysis, or dialectical behavior therapy (DBT).",
-      },
-    ],
   },
   {
     name: "Pulmonology",
@@ -149,34 +101,6 @@ const medicalSpecialties = [
   },
 ];
 
-const prisma = new PrismaClient();
-async function seed() {
-  for (const specialty of medicalSpecialties) {
-    const { medicalsubspeciality, ...medicalSpecialtyData } = specialty;
-
-    // Create the main MedicalSpecialty
-    const createdMedicalSpecialty = await prisma.medicalSpeciality.create({
-      data: medicalSpecialtyData,
-    });
-
-    // If medicalsubspeciality exists, create PsychiatrySubspecialties
-    if (medicalsubspeciality && medicalsubspeciality.length > 0) {
-      for (const subspecialty of medicalsubspeciality) {
-        await prisma.medicalSubSpeciality.create({
-          data: {
-            ...subspecialty,
-            medicalSpecialityId: createdMedicalSpecialty.id,
-          },
-        });
-      }
-    }
-  }
-}
-try {
-  await seed();
-  await prisma.$disconnect();
-} catch (e) {
-  console.log(e);
-  await prisma.$disconnect();
-  process.exit(1);
-}
+module.exports = {
+  medicalSpecialties,
+};

@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   typescript: {
     shim: false,
   },
+  compilerOptions: {
+    isCustomElement: (tag) => tag === "Textareatool", // Replace 'audio' with the actual tag name
+  },
   devtools: { enabled: true },
   modules: ["@nuxtjs/supabase", "nuxt-quasar-ui", "@pinia/nuxt"],
   plugins: [
@@ -16,10 +19,12 @@ export default defineNuxtConfig({
   //   dir: "assets/images",
   // },
   quasar: {
-    plugins: ["BottomSheet", "Dialog", "Loading", "LoadingBar", "Notify", "Dark"],
+    plugins: ["Notify"],
     extras: {
       font: "roboto-font",
     },
+    sassVariables: "~/assets/styles/quasar.sass",
+
     components: {
       defaults: {
         QBtn: {
@@ -29,7 +34,16 @@ export default defineNuxtConfig({
     },
   },
   ssr: true,
-  css: ["@quasar/extras/material-icons/material-icons.css", "~/assets/styles/quasar.sass"],
+  css: ["@quasar/extras/material-icons/material-icons.css"],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        sass: {
+          additionalData: '@use "~/assets/styles/quasar.sass" as *\n',
+        },
+      },
+    },
+  },
   runtimeConfig: {
     dbPassword: process.env.DB_PASSWORD,
   },

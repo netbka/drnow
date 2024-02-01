@@ -1,37 +1,42 @@
 datasource db {
-    url      = env("DATABASE_URL")
-    provider = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
+    provider  = "postgresql"
 }
 
 generator client {
     provider      = "prisma-client-js"
-    binaryTargets = ["native", "darwin-arm64"]
+    binaryTargets = ["native", "rhel-openssl-1.0.x"]
     output        = "../node_modules/.prisma/client"
-}
-
-model User {
-    id        Int      @id @default(autoincrement())
-    userEmail String   @unique
-    fname     String?
-    lname     String?
-    profile   Profile?
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
 }
 
 model Profile {
     id        Int       @id @default(autoincrement())
-    bio       String?
-    bday      DateTime?
-    user      User      @relation(fields: [userId], references: [id])
-    userId    Int       @unique
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
-}
+    userEmail String    @unique
+    firstName String?
+    lastName  String?
+    biography String?
+    birthDay  DateTime?
 
-model Specs {
-    id        Int      @id @default(autoincrement())
-    name      String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+}
+
+model MedicalSpeciality {
+    id          Int                    @id @default(autoincrement())
+    name        String
+    description String
+    subspecs    MedicalSubSpeciality[]
+    createdAt   DateTime               @default(now())
+    updatedAt   DateTime               @updatedAt
+}
+
+model MedicalSubSpeciality {
+    id                  Int               @id @default(autoincrement())
+    name                String
+    description         String
+    createdAt           DateTime          @default(now())
+    updatedAt           DateTime          @updatedAt
+    medicalSpeciality   MedicalSpeciality @relation(fields: [medicalSpecialityId], references: [id])
+    medicalSpecialityId Int
 }

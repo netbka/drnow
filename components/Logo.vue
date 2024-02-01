@@ -6,5 +6,5 @@
   </div>
 </template>
 <script setup>
-import logo from "~/assets/images/logosmall.png";
+import logo from "/logosmall.png";
 </script>

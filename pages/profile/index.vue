@@ -14,7 +14,7 @@
               >{{ store.currentProfile.firstName }}
               {{ store.currentProfile.lastName }}</q-item-label
             >
-            <q-item-label caption> {{ store.currentProfile.biography }} </q-item-label>
+            <q-item-label caption> {{ storeMedSpec.currentItem.name }} </q-item-label>
           </q-item-section>
         </q-item>
 
@@ -55,7 +55,8 @@ definePageMeta({ auth: true });
 import { useProfileStore } from "~/stores/profile";
 const user = useSupabaseUser();
 const profile = computed(() => user.value?.user_metadata.avatar_url);
-
+import { useMedSpecStore } from "~/stores/medspec";
+const storeMedSpec = useMedSpecStore();
 const store = useProfileStore();
 store.fetchCurrentUser();
 const tab = ref("profile");

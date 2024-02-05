@@ -36,10 +36,5 @@ import background from "~/assets/images/mainpage_small.webp";
   position: absolute;
 }
 
-.back_main {
-  background-image: none;
-  background-repeat: repeat;
-  background-size: auto;
-  background-image: url(/main_background.svg);
-}
+
 </style>

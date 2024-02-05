@@ -16,6 +16,7 @@
       ></BaseTextareatool>
       <BaseCalendar></BaseCalendar>
       <BaseCitySelect></BaseCitySelect>
+      <BaseMedSpec></BaseMedSpec>
       <div>
         <q-btn label="Submit" type="submit" color="secondary" />
         <q-btn label="Reset" outline type="reset" color="primary" class="q-ml-sm" />
@@ -29,6 +30,9 @@ import { useProfileStore } from "~/stores/profile";
 import { useQuasar } from "quasar";
 const $q = useQuasar();
 const store = useProfileStore();
+import { useMedSpecStore } from "~/stores/medspec";
+const storeMedSpec = useMedSpecStore();
+await storeMedSpec.fetchAll();
 const loading = ref(false);
 onMounted(async () => {});
 

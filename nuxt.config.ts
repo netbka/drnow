@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     shim: false,
   },
   compilerOptions: {
-    isCustomElement: (tag) => tag === "Textareatool", // Replace 'audio' with the actual tag name
+    isCustomElement: (tag) => tag === "Textareatool",
   },
   devtools: { enabled: true },
   modules: ["@nuxtjs/supabase", "nuxt-quasar-ui", "@pinia/nuxt"],
@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     plugins: ["Notify"],
     extras: {
       font: "roboto-font",
+      fontIcons: ["fontawesome-v6"],
     },
     sassVariables: "~/assets/styles/quasar.sass",
 
@@ -34,7 +35,7 @@ export default defineNuxtConfig({
     },
   },
   ssr: true,
-  css: ["@quasar/extras/material-icons/material-icons.css"],
+  css: ["@quasar/extras/material-icons/material-icons.css", "~/assets/styles/style.css"],
   vite: {
     css: {
       preprocessorOptions: {
@@ -50,14 +51,16 @@ export default defineNuxtConfig({
   app: {
     // layoutTransition: { name: "layout", mode: "out-in" },
     // pageTransition: { name: "page", mode: "out-in" },
+
     head: {
+      title: "DrNow - schedule and consult doctor online",
       charset: "utf-16",
       viewport: "width=500, initial-scale=1",
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-        { rel: "preconnect", href: "https://fonts.googleapis.com" },
-        { rel: "preconnect", href: "https://fonts.gstatic.com" },
-        { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" },
+        //{ rel: "preconnect", href: "https://fonts.googleapis.com" },
+        //{ rel: "preconnect", href: "https://fonts.gstatic.com" },
+        //{ rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" },
       ],
     },
   },

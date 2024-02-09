@@ -17,6 +17,12 @@ export const useMedSpecStore = defineStore("MedicalSpecialityStore", {
       subspecs: [],
     },
     currentSubItem: [],
+    defaultItem: {
+      id: 0,
+      name: "",
+      description: "",
+      subspecs: [],
+    },
     //  {
     //   id: 0,
     //   name: "",
@@ -25,6 +31,9 @@ export const useMedSpecStore = defineStore("MedicalSpecialityStore", {
   }),
 
   actions: {
+    resetCurrentItem() {
+      this.currentItem = Object.assign({}, this.defaultItem);
+    },
     async fetchAll() {
       const { data } = await useFetch("/api/medspec", {
         method: "get",
@@ -32,12 +41,5 @@ export const useMedSpecStore = defineStore("MedicalSpecialityStore", {
 
       if (data.value.length > 0) this.items = data.value;
     },
-    // async createUser(newUser: User) {
-    //   // Create a new user using Prisma Client
-    //   const createdUser = await this.$prisma.user.create({
-    //     data: newUser,
-    //   });
-    //   // Update local state or perform other actions as needed
-    // },
   },
 });

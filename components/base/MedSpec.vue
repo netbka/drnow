@@ -17,6 +17,7 @@
           option-value="id"
           :loading="store.loading"
           option-label="name"
+          @update:model-value="updateMedSpec"
         >
           <template v-slot:option="scope">
             <q-item v-bind="scope.itemProps">
@@ -74,8 +75,42 @@
 </template>
 
 <script lang="ts" setup>
+const props = defineProps({
+  selectedSpecId: {
+    type: Number,
+    default: 0,
+  },
+  selectedSubSpecIds: {
+    type: Array,
+  },
+});
+const { selectedSpecId, selectedSubSpecIds } = props;
+
+// watch(
+//   () => selectedSpecId,
+//   (newVal) => {
+//     console.log(newVal);
+//   }
+// );
+
 import { useMedSpecStore } from "~/stores/medspec";
 const store = useMedSpecStore();
+const updateMedSpec = (val) => {
+  //console.log(val);
+  if (val === null) {
+    useMedSpecStore().resetCurrentItem();
+  }
+};
+
+onMounted(async () => {
+  //  await store.getAll();
+  //      model.value = store.defaultArr.find((el) => el.Id == props.propSelectedId);
+  //console.log(selectedSpecId);
+  store.currentItem = store.items.find((el) => el.id == selectedSpecId);
+  console.log(selectedSubSpecIds);
+  store.currentSubItem = selectedSubSpecIds;
+});
+
 //await store.fetchAll();
 </script>
 

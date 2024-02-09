@@ -8,7 +8,7 @@ interface ProfileStoreState {
 export const useProfileStore = defineStore("ProfileStore", {
   state: (): ProfileStoreState => ({
     profiles: [],
-    currentProfile: { id: 0, lastName: "", firstName: "", userEmail: "", biography: "" },
+    currentProfile: { id: 0, lastName: "", firstName: "", user_id: "", biography: "", birthDay: "", city: "", specialityId: null, speciality: {}, profilesMedicalSubSpecialities: [] },
   }),
 
   actions: {
@@ -22,13 +22,7 @@ export const useProfileStore = defineStore("ProfileStore", {
       });
 
       if (data.value !== null) this.currentProfile = Object.assign({}, data.value);
+      this.currentProfile.biography = this.currentProfile.biography ? this.currentProfile.biography : "";
     },
-    // async createUser(newUser: User) {
-    //   // Create a new user using Prisma Client
-    //   const createdUser = await this.$prisma.user.create({
-    //     data: newUser,
-    //   });
-    //   // Update local state or perform other actions as needed
-    // },
   },
 });

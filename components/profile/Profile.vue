@@ -15,8 +15,14 @@
         @update="updateBio"
       ></BaseTextareatool>
       <BaseCalendar></BaseCalendar>
-      <BaseCitySelect></BaseCitySelect>
-      <BaseMedSpec></BaseMedSpec>
+      <BaseCitySelect
+        @update="updateCity"
+        v-model="store.currentProfile.city"
+      ></BaseCitySelect>
+      <BaseMedSpec
+        :selectedSpecId="store.currentProfile.specialityId"
+        :selectedSubSpecIds="store.currentProfile.profilesMedicalSubSpecialities"
+      ></BaseMedSpec>
       <div>
         <q-btn label="Submit" type="submit" color="secondary" />
         <q-btn label="Reset" outline type="reset" color="primary" class="q-ml-sm" />
@@ -39,19 +45,28 @@ onMounted(async () => {});
 const updateBio = (val) => {
   store.currentProfile.biography = val;
 };
+const updateCity = (val) => {
+  store.currentProfile.city = val ? val.city_name_en : "";
+};
+
 const updateBirthDay = (val) => {
   store.currentProfile.birthDay = val;
 };
 
 // store.currentProfile.biography
 //@update:value="myContent = value"
+
 let myContent = ref("Initial content");
 const onSubmit = async () => {
+  //console.log(storeMedSpec.currentItem);
+  //console.log(storeMedSpec.currentSubItem);
   loading.value = true;
-
+  store.currentProfile.specialityId = storeMedSpec.currentItem.id;
+  store.currentProfile.subSpecAdd = storeMedSpec.currentSubItem;
   const { data, pending, error, refresh } = await useFetch("/api/profile", {
     method: "post",
     body: { ...store.currentProfile },
+    // extra: { ...storeMedSpec.currentSubItem },
   });
   loading.value = false;
   $q.notify({

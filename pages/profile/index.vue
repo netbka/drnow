@@ -14,7 +14,7 @@
               >{{ store.currentProfile.firstName }}
               {{ store.currentProfile.lastName }}</q-item-label
             >
-            <q-item-label caption> {{ storeMedSpec.currentItem.name }} </q-item-label>
+            <q-item-label caption> FIX HERE </q-item-label>
           </q-item-section>
         </q-item>
 
@@ -58,8 +58,11 @@ const profile = computed(() => user.value?.user_metadata.avatar_url);
 import { useMedSpecStore } from "~/stores/medspec";
 const storeMedSpec = useMedSpecStore();
 const store = useProfileStore();
-store.fetchCurrentUser();
+await store.fetchCurrentUser();
+//console.log(store.currentProfile);
+
 const tab = ref("profile");
+
 // const { data } = await useFetch("/api/user", {
 //   method: "get",
 // });

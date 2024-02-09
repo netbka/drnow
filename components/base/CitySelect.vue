@@ -16,7 +16,7 @@
       :loading="pending"
       @filter="filterFn"
       option-label="city_name_en"
-      @update:model-value="valueChange"
+      @update:model-value="$emit('update', model)"
     >
       <template v-slot:option="scope">
         <q-item v-bind="scope.itemProps">
@@ -35,9 +35,16 @@
 </template>
 
 <script lang="ts" setup>
-import { useCityStore } from "~/stores/city";
-const model = ref(null);
-const store = useCityStore();
+//import { useCityStore } from "~/stores/city";
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: "",
+  },
+});
+const { modelValue } = props;
+const model = ref(modelValue);
+//const store = useCityStore();
 //var options = ref([]);
 
 //await store.getCities();
@@ -48,8 +55,8 @@ const filterFn = async (val, update, abort) => {
     // await refresh();
   });
 };
-const valueChange = (val) => {};
-const query = ref("tel");
+//const valueChange = (val) => {};
+const query = ref(modelValue);
 
 const uri = "https://data.gov.il/api/3/action/datastore_search";
 

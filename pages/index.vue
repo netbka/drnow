@@ -4,10 +4,10 @@
       <h1 class="text-white text-bold leading-tight q-pa-md">
         Dr Now. Connecting healthcare.
       </h1>
-      <p class="text-h3">Find your Doctor and Book appointment now.</p>
-      <a href="#" class="px-8 py-4 rounded inline-block mt-8 font-semibold"
-        >Book Appointment</a
-      >
+      <p class="text-h3">
+        Video appointments available! Connect with your doctor from anywhere.
+      </p>
+      <NuxtLink to="/doctors" class="flex gap-2"> Book Appointment </NuxtLink>
     </div>
     <div class="col-7">
       <div class="">
@@ -35,6 +35,4 @@ import background from "~/assets/images/mainpage_small.webp";
   top: 0;
   position: absolute;
 }
-
-
 </style>

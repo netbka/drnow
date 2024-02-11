@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { type Profile } from "~/types/profile";
+import { type Profile } from "~/types/types";
 interface ProfileStoreState {
   profiles: Profile[];
   currentProfile: Profile;

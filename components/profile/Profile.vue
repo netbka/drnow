@@ -62,12 +62,14 @@ const onSubmit = async () => {
   //console.log(storeMedSpec.currentSubItem);
   loading.value = true;
   store.currentProfile.specialityId = storeMedSpec.currentItem.id;
+
   store.currentProfile.subSpecAdd = storeMedSpec.currentSubItem;
   const { data, pending, error, refresh } = await useFetch("/api/profile", {
     method: "post",
     body: { ...store.currentProfile },
     // extra: { ...storeMedSpec.currentSubItem },
   });
+  store.currentProfile.profilesMedicalSubSpecialities = storeMedSpec.currentSubItem;
   loading.value = false;
   $q.notify({
     type: "positive",
@@ -79,3 +81,4 @@ const onReset = () => {
   console.log("Reset");
 };
 </script>
+~/stores/types

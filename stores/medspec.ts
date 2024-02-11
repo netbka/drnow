@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { type MedicalSpeciality, type MedicalSubSpeciality } from "~/types/profile";
+import { type MedicalSpeciality, type MedicalSubSpeciality } from "~/types/types";
 interface MedicalSpecialityStoreState {
   items: MedicalSpeciality[];
   currentItem: MedicalSpeciality;
@@ -11,14 +11,14 @@ export const useMedSpecStore = defineStore("MedicalSpecialityStore", {
     loading: false,
     items: [],
     currentItem: {
-      id: 0,
+      id: null,
       name: "",
       description: "",
       subspecs: [],
     },
     currentSubItem: [],
     defaultItem: {
-      id: 0,
+      id: null,
       name: "",
       description: "",
       subspecs: [],

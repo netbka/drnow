@@ -106,8 +106,11 @@ onMounted(async () => {
   //  await store.getAll();
   //      model.value = store.defaultArr.find((el) => el.Id == props.propSelectedId);
   //console.log(selectedSpecId);
-  store.currentItem = store.items.find((el) => el.id == selectedSpecId);
-  console.log(selectedSubSpecIds);
+  store.currentItem = selectedSpecId
+    ? store.items.find((el) => el.id == selectedSpecId)
+    : store.currentItem;
+  //console.log(store.currentItem);
+  //console.log(selectedSubSpecIds);
   store.currentSubItem = selectedSubSpecIds;
 });
 

@@ -22,9 +22,10 @@
   <q-header reveal elevated class="bg-primary text-accent">
     <q-toolbar>
       <q-toolbar-title>
-        <q-avatar>
-          <img :src="logo" />
-        </q-avatar>
+        <a href="/"
+          ><q-avatar>
+            <img :src="logo" /> </q-avatar
+        ></a>
         DRNOW
       </q-toolbar-title>
 

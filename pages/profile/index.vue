@@ -69,3 +69,4 @@ const tab = ref("profile");
 </script>
 
 <style></style>
+~/stores/types

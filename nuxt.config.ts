@@ -90,7 +90,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: "/login",
       callback: "/profile",
-      exclude: ["/", "/public/*"],
+      exclude: ["/", "/public/*", "/doctors", "/doctors/*"],
     },
   },
 });

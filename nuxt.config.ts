@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   // devtools: { enabled: true },
   modules: ["@nuxtjs/supabase", "nuxt-quasar-ui", "@pinia/nuxt"],
   plugins: [
-    "~/plugins/prisma-client.ts",
+    //"~/plugins/prisma-client.ts",
     // ... other plugins
   ],
   // image: {

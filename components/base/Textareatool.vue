@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <q-editor
-      v-model="internalVal"
-      :dense="$q.screen.lt.sm"
-      :toolbar="editorToolbar"
-      autocorrect="off"
-      autocapitalize="off"
-      autocomplete="off"
-      spellcheck="false"
-      @update:model-value="$emit('update', internalVal)"
-    />
-  </div>
+  <q-editor
+    v-model="internalVal"
+    :dense="$q.screen.lt.sm"
+    :toolbar="editorToolbar"
+    autocorrect="off"
+    autocapitalize="off"
+    autocomplete="off"
+    spellcheck="false"
+    @update:model-value="$emit('update', internalVal)"
+  />
 </template>
 
 <script setup lang="ts">

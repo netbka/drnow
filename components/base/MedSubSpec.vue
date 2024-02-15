@@ -1,12 +1,10 @@
 <template>
   <q-select
-    v-model="store.currentItem"
-    label="Medical Speciality"
-    :options="store.items"
+    v-model="store.currentSubItem"
+    label="Medical Sub Speciality"
+    :options="store.currentItem.subspecs"
     lazy-rules
     clearable
-    use-input
-    hide-selected
     fill-input
     input-debounce="500"
     options-selected-class="text-deep-orange"
@@ -14,7 +12,7 @@
     option-value="id"
     :loading="store.loading"
     option-label="name"
-    @update:model-value="updateMedSpec"
+    multiple
   >
     <template v-slot:option="scope">
       <q-item v-bind="scope.itemProps">
@@ -29,36 +27,19 @@
 
 <script lang="ts" setup>
 const props = defineProps({
-  selectedSpecId: {
-    type: Number,
-    default: 0,
+  selectedSubSpecIds: {
+    type: Array,
   },
 });
-const { selectedSpecId } = props;
-
-// watch(
-//   () => selectedSpecId,
-//   (newVal) => {
-//     console.log(newVal);
-//   }
-// );
+const { selectedSubSpecIds } = props;
 
 import { useMedSpecStore } from "~/stores/medspec";
 const store = useMedSpecStore();
-await store.fetchAll();
-const updateMedSpec = (val) => {
-  if (val === null) {
-    useMedSpecStore().resetCurrentItem();
-  }
-};
-
 onMounted(async () => {
-  store.currentItem = selectedSpecId
-    ? store.items.find((el) => el.id == selectedSpecId)
-    : store.currentItem;
-
-  //store.currentSubItem = selectedSubSpecIds;
+  store.currentSubItem = selectedSubSpecIds;
 });
+
+//await store.fetchAll();
 </script>
 
 <style scoped></style>

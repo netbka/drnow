@@ -1,5 +1,5 @@
 <template>
-  <ClientOnly>
+  
     <q-btn-dropdown v-if="user" stretch flat label="Account Settings">
       <div class="row no-wrap q-pa-md">
         <div class="column">
@@ -29,7 +29,7 @@
     </q-btn-dropdown>
 
     <q-btn stretch flat label="Login" v-else to="/login" />
-  </ClientOnly>
+  
 </template>
 
 <script lang="ts" setup>

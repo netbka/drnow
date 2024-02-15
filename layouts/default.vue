@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <Navbar />
+    <LayoutNavbar />
     <q-page-container
       class="full-width row wrap justify-center items-start content-start"
     >
@@ -9,6 +9,6 @@
         <slot></slot>
       </div>
     </q-page-container>
-    <Footer />
+    <LayoutFooter />
   </q-layout>
 </template>

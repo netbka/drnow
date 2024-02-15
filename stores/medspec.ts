@@ -33,9 +33,10 @@ export const useMedSpecStore = defineStore("MedicalSpecialityStore", {
   actions: {
     resetCurrentItem() {
       this.currentItem = Object.assign({}, this.defaultItem);
+      this.currentSubItem = [];
     },
     async fetchAll() {
-      const { data } = await useFetch("/api/medspec", {
+      const { data } = await useFetch("/api/medspec/medspec", {
         method: "get",
       });
 

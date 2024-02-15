@@ -20,6 +20,7 @@ model Profile {
     biography                      String?
     birthDay                       DateTime?
     city                           String?
+    avatarPath                     String?
     specialityId                   Int?
     speciality                     MedicalSpeciality?     @relation(fields: [specialityId], references: [id])
     createdAt                      DateTime               @default(now())

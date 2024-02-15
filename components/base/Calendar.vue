@@ -51,6 +51,6 @@ const config = ref({
 });
 
 const valueUpdate = (val) => {
-  console.log(val);
+  // console.log(val);
 };
 </script>

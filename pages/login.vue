@@ -6,13 +6,12 @@
       </q-card-section>
       <q-separator />
       <q-card-section>
-        <ClientOnly>
-          <q-form @submit="onSubmit">
-            <q-input label="Username" v-model="username" />
-            <q-input label="Password" type="password" v-model="password" />
-            <q-btn type="submit" label="Login" class="full-width q-mt-md" />
-          </q-form>
-        </ClientOnly>
+        <q-form @submit="onSubmit">
+          <q-input label="Username" v-model="username" />
+          <q-input label="Password" type="password" v-model="password" />
+          <q-btn type="submit" label="Login" class="full-width q-mt-md" />
+        </q-form>
+
         <div class="row col-gutter-sm">
           <div class="col">
             <q-btn
@@ -62,7 +61,8 @@ definePageMeta({
 
 const supabase = useSupabaseClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 //const { query } = useRoute();
-//const user = useSupabaseUser();
+const user = useSupabaseUser();
+//console.log("login", user);
 
 const loginGithub = async () => {
   const { error } = await supabase.auth.signInWithOAuth({

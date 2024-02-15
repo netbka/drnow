@@ -6,10 +6,11 @@ export default defineNuxtConfig({
   typescript: {
     shim: false,
   },
-  compilerOptions: {
-    isCustomElement: (tag) => tag === "Textareatool",
-  },
-  devtools: { enabled: true },
+  // compilerOptions: {
+  //   isCustomElement: (tag) => tag === "Textareatool",
+  // },
+  css: ["@quasar/extras/material-icons/material-icons.css", "~/assets/styles/style.css"],
+  // devtools: { enabled: true },
   modules: ["@nuxtjs/supabase", "nuxt-quasar-ui", "@pinia/nuxt"],
   plugins: [
     "~/plugins/prisma-client.ts",
@@ -35,16 +36,16 @@ export default defineNuxtConfig({
     },
   },
   ssr: true,
-  css: ["@quasar/extras/material-icons/material-icons.css", "~/assets/styles/style.css"],
-  vite: {
-    css: {
-      preprocessorOptions: {
-        sass: {
-          additionalData: '@use "~/assets/styles/quasar.sass" as *\n',
-        },
-      },
-    },
-  },
+
+  // vite: {
+  //   css: {
+  //     preprocessorOptions: {
+  //       sass: {
+  //         additionalData: '@use "~/assets/styles/quasar.sass" as *\n',
+  //       },
+  //     },
+  //   },
+  // },
   runtimeConfig: {
     dbPassword: process.env.DB_PASSWORD,
   },
@@ -64,9 +65,9 @@ export default defineNuxtConfig({
       ],
     },
   },
-  build: {
-    transpile: ["quasar"],
-  },
+  // build: {
+  //   transpile: ["quasar"],
+  // },
   // vite: {
   //   define: {
   //     "process.env.DEBUG": false,

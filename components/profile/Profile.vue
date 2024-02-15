@@ -1,31 +1,61 @@
 <template>
   <div>
-    <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-      <q-input
-        filled
-        v-model="store.currentProfile.firstName"
-        label="Your name *"
-        :loading="loading"
-        :rules="[(val) => !!val || 'Field is required']"
-      />
-      <q-input filled v-model="store.currentProfile.lastName" label="Your last name *" />
-      <div class="text-bold">Career summary</div>
-      <BaseTextareatool
-        v-model="store.currentProfile.biography"
-        @update="updateBio"
-      ></BaseTextareatool>
-      <BaseCalendar></BaseCalendar>
-      <BaseCitySelect
-        @update="updateCity"
-        v-model="store.currentProfile.city"
-      ></BaseCitySelect>
-      <BaseMedSpec
-        :selectedSpecId="store.currentProfile.specialityId"
-        :selectedSubSpecIds="store.currentProfile.profilesMedicalSubSpecialities"
-      ></BaseMedSpec>
-      <div>
-        <q-btn label="Submit" type="submit" color="secondary" />
-        <q-btn label="Reset" outline type="reset" color="primary" class="q-ml-sm" />
+    <q-form @submit="onSubmit" @reset="onReset" class="">
+      <div class="row q-col-gutter-sm">
+        <div class="col-6">
+          <q-input
+            filled
+            v-model="store.currentProfile.firstName"
+            label="Your name *"
+            :loading="loading"
+            :rules="[(val) => !!val || 'Field is required']"
+          />
+        </div>
+        <div class="col-6">
+          <q-input
+            filled
+            v-model="store.currentProfile.lastName"
+            label="Your last name *"
+          />
+        </div>
+      </div>
+      <div class="row q-pb-sm">
+        <div class="col-12">
+          <div class="text-bold">Career summary</div>
+          <BaseTextareatool
+            v-model="store.currentProfile.biography"
+            @update="updateBio"
+          ></BaseTextareatool>
+        </div>
+      </div>
+      <div class="row q-py-sm">
+        <div class="col-12">
+          <BaseCalendar></BaseCalendar>
+        </div>
+      </div>
+      <div class="row q-py-sm">
+        <div class="col-12">
+          <BaseCitySelect
+            @update="updateCity"
+            v-model="store.currentProfile.city"
+          ></BaseCitySelect>
+        </div>
+      </div>
+      <div class="row q-col-gutter-sm q-py-sm">
+        <div class="col-6">
+          <BaseMedSpec :selectedSpecId="store.currentProfile.specialityId"></BaseMedSpec>
+        </div>
+        <div class="col-6">
+          <BaseMedSubSpec
+            :selectedSubSpecIds="store.currentProfile.profilesMedicalSubSpecialities"
+          ></BaseMedSubSpec>
+        </div>
+      </div>
+      <div class="row q-pt-md">
+        <div class="col-12">
+          <q-btn label="Submit" type="submit" color="secondary" />
+          <q-btn label="Reset" outline type="reset" color="primary" class="q-ml-sm" />
+        </div>
       </div>
     </q-form>
   </div>
@@ -37,10 +67,21 @@ import { useQuasar } from "quasar";
 const $q = useQuasar();
 const store = useProfileStore();
 import { useMedSpecStore } from "~/stores/medspec";
+
 const storeMedSpec = useMedSpecStore();
-await storeMedSpec.fetchAll();
+
 const loading = ref(false);
-onMounted(async () => {});
+onMounted(async () => {
+  // if (!store.currentProfile.avatarPath && event.context.user?.user_metadata?.avatar_url.length > 0) {
+  //     console.log();
+  //     var url = event.context.user.user_metadata.avatar_url;
+  //     var imagePath = event.context.user.id;
+  //     const r = await urltofile(url, imagePath);
+  //     let { error: uploadError } = await supabase.storage.from("avatar").upload("", r.name);
+  //     if (uploadError) throw uploadError;
+  //     console.log(r);
+  //   }
+});
 
 const updateBio = (val) => {
   store.currentProfile.biography = val;
@@ -54,9 +95,7 @@ const updateBirthDay = (val) => {
 };
 
 // store.currentProfile.biography
-//@update:value="myContent = value"
 
-let myContent = ref("Initial content");
 const onSubmit = async () => {
   //console.log(storeMedSpec.currentItem);
   //console.log(storeMedSpec.currentSubItem);
@@ -64,11 +103,12 @@ const onSubmit = async () => {
   store.currentProfile.specialityId = storeMedSpec.currentItem.id;
 
   store.currentProfile.subSpecAdd = storeMedSpec.currentSubItem;
-  const { data, pending, error, refresh } = await useFetch("/api/profile", {
-    method: "post",
-    body: { ...store.currentProfile },
-    // extra: { ...storeMedSpec.currentSubItem },
-  });
+  await store.updateCurrentUser();
+  // const { data, pending, error, refresh } = await $fetch("/api/profile", {
+  //   method: "post",
+  //   body: { ...store.currentProfile },
+
+  // });
   store.currentProfile.profilesMedicalSubSpecialities = storeMedSpec.currentSubItem;
   loading.value = false;
   $q.notify({
@@ -81,4 +121,3 @@ const onReset = () => {
   console.log("Reset");
 };
 </script>
-~/stores/types

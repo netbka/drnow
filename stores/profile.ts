@@ -12,17 +12,25 @@ export const useProfileStore = defineStore("ProfileStore", {
   }),
 
   actions: {
-    async fetchProfiles() {
-      const profiles = await this.$prisma.profile.findMany();
-      this.profiles = profiles;
+    async fetchAll() {
+      const { data } = await useFetch("/api/profile/all", {
+        method: "get",
+      });
+      this.profiles = data;
     },
     async fetchCurrentUser() {
-      const { data } = await useFetch("/api/profile", {
+      const { data } = await useFetch("/api/profile/current", {
         method: "get",
       });
 
       if (data.value !== null) this.currentProfile = Object.assign({}, data.value);
       this.currentProfile.biography = this.currentProfile.biography ? this.currentProfile.biography : "";
+    },
+    async updateCurrentUser() {
+      const { data, pending, error, refresh } = await $fetch("/api/profile/current", {
+        method: "post",
+        body: { ...this.currentProfile },
+      });
     },
   },
 });

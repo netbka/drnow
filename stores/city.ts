@@ -29,7 +29,7 @@ export const useCityStore = defineStore("city", {
         method: "get",
         server: false,
       });
-      console.log(toRaw(data));
+      //console.log(toRaw(data));
       //itemArray = data.result.records;
     },
   },

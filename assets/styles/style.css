@@ -38,3 +38,13 @@
   background-size: auto;
   background-image: url(/main_background.svg);
 }
+.q-table__top {
+  padding: 12px 4px;
+}
+
+.q-select :deep(.q-field__native) > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}

@@ -10,13 +10,13 @@ export default defineEventHandler(async (event) => {
 
     let body = await readBody(event);
 
-    console.log("body before map", body);
-    const newSubspecialties = body.subSpecAdd.map(({ id }) => id);
-    let removedSubspecialties = body.profilesMedicalSubSpecialities.map(({ id }) => id);
+    //console.log("body before map", body);
+    const newSubspecialties = body.subSpecAdd ? body.subSpecAdd.map(({ id }) => id) : [];
+    let removedSubspecialties = body.profilesMedicalSubSpecialities ? body.profilesMedicalSubSpecialities.map(({ id }) => id) : [];
 
     const itemsToRemoveSet = new Set(newSubspecialties);
     removedSubspecialties = removedSubspecialties.filter((item) => !itemsToRemoveSet.has(item));
-    console.log("body after map", body);
+    //console.log("body after map", body);
     //console.log("newSubspecialties", newSubspecialties);
     //console.log("removedSubspecialties", removedSubspecialties);
 

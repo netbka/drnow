@@ -1,6 +1,7 @@
 //import { quasar } from "@quasar/vite-plugin";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
+//import vsharp from "vite-plugin-vsharp";
 
 export default defineNuxtConfig({
   typescript: {
@@ -11,9 +12,12 @@ export default defineNuxtConfig({
   // },
   css: ["@quasar/extras/material-icons/material-icons.css", "~/assets/styles/style.css"],
   // devtools: { enabled: true },
+  // vite: {
+  //   plugins: [vsharp()],
+  // },
   modules: ["@nuxtjs/supabase", "nuxt-quasar-ui", "@pinia/nuxt"],
   plugins: [
-    //"~/plugins/prisma-client.ts",
+    "~/plugins/prisma-client.ts",
     // ... other plugins
   ],
   // image: {

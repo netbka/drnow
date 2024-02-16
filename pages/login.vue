@@ -60,37 +60,52 @@ definePageMeta({
 });
 
 const supabase = useSupabaseClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-//const { query } = useRoute();
+const { query } = useRoute();
 const user = useSupabaseUser();
 //console.log("login", user);
 
+watchEffect(async () => {
+  if (user.value) {
+    console.log(user.value);
+    await navigateTo(query.redirectTo as string, {
+      replace: true,
+    });
+  }
+});
+
 const loginGithub = async () => {
+  const host = `${window.location.origin}`;
+  //console.log(redirectTo);
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
-      redirectTo: "http://localhost:3000/profile",
+      redirectTo: host + "/profile",
     },
   });
   if (error) {
     console.log(error);
   }
 };
-// watchEffect(async () => {
-//   console.log(query);
-//   if (user.value) {
-//     console.log(query);
-//     await navigateTo(query.redirectTo as string, {
-//       replace: true,
-//     });
+// const loginGithub = async () => {
+//   const { error } = await supabase.auth.signInWithOAuth({
+//     provider: "github",
+//     options: {
+//       redirectTo: "http://localhost:3000/profile",
+//     },
+//   });
+//   if (error) {
+//     console.log(error);
 //   }
-// });
+// };
+
 const loginGoogle = async () => {
+  const host = `${window.location.origin}`;
   //const redirectTo = `${window.location.origin}${query.redirectTo}`;
   //console.log(redirectTo);
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: "http://localhost:3000/profile",
+      redirectTo: host + "/profile",
 
       queryParams: {
         access_type: "offline",

@@ -18,6 +18,7 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/supabase", "nuxt-quasar-ui", "@pinia/nuxt"],
   plugins: [
     "~/plugins/prisma-client.ts",
+
     // ... other plugins
   ],
   // image: {

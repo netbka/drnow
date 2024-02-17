@@ -8,14 +8,18 @@
       </q-item-section>
 
       <q-item-section>
-        <q-item-label>{{ model.firstName }} {{ model.lastName }} </q-item-label>
-        <q-item-label caption
-          >{{ model.speciality.name }}
-          <q-chip square dense>
-            <q-avatar icon="place" color="" />
-            {{ model.city }}
-          </q-chip></q-item-label
-        >
+        <div class="row">
+          <div class="col-6">
+            <q-item-label>{{ model.firstName }} {{ model.lastName }} </q-item-label>
+            <q-item-label caption>{{ model.speciality.name }} </q-item-label>
+          </div>
+          <div class="col-6 text-right">
+            <q-chip square dense color="accent" outline>
+              <q-avatar icon="place" color="" />
+              {{ model.city }}
+            </q-chip>
+          </div>
+        </div>
       </q-item-section>
     </q-item>
 
@@ -33,7 +37,7 @@
         <div class="text-subtitle1">Specialities</div>
         <q-chip
           outline
-          color="primary"
+          color="accent"
           text-color="white"
           icon="event"
           v-for="(item, index) in model.profilesMedicalSubSpecialities"
@@ -43,6 +47,11 @@
         </q-chip>
       </q-card-section>
     </q-card-section>
+    <q-separator />
+
+    <q-card-actions>
+      <q-btn :to="toRoute" flat>Schedule </q-btn>
+    </q-card-actions>
   </q-card>
 </template>
 
@@ -56,7 +65,14 @@ const props = defineProps({
 });
 const { modelValue } = props;
 const model = ref(modelValue);
-//console.log(model.value.avatarPath);
+const toRoute = ref(
+  "/doctors/" +
+    model.value.user_id +
+    "-" +
+    model.value.firstName +
+    "-" +
+    model.value.lastName
+);
 let avatarSrc = ref("");
 avatarSrc.value = await getProfile(model.value.avatarPath);
 </script>

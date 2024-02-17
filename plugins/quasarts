@@ -1,8 +1,0 @@
-// import { useQuasar } from "quasar";
-// import type { QBtnProps, QNotifyOptions } from "quasar";
-
-// const $q = useQuasar();
-
-// export default defineNuxtPlugin((nuxtApp) => {
-//   nuxtApp.provide("notify", $q);
-// });

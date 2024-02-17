@@ -16,11 +16,7 @@ const supabase = useSupabaseClient();
 const src = ref("");
 onMounted(async () => {
   await updateNewAvatar();
-  src.value = await getProfile(
-    store.currentProfile.user_id + ".jpeg",
-    store.currentProfile.firstName,
-    store.currentProfile.lastName
-  );
+  src.value = await getProfile(store.currentProfile.user_id + ".jpeg");
 });
 
 const updateNewAvatar = async () => {

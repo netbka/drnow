@@ -17,6 +17,7 @@ export const getProfile = async (fileName: string) => {
   const { data, error } = await supabase.storage.from("avatar").getPublicUrl(fileName);
   //if (error) return "https://eu.ui-avatars.com/api/?name=" + firstName + "+" + lastName + "&size=100";
   //console.log(data);
+  if (error) throw nodataError;
   return data.publicUrl;
 };
 

@@ -15,9 +15,6 @@
         v-model:pagination="pagination"
         :rows-per-page-options="rowsPerPageOptions"
       >
-        <!-- <template v-slot:top-right>
-          <template v-slot:top-left> </template> -->
-
         <template v-slot:top>
           <div class="row q-col-gutter-sm full-width">
             <div class="col-3">
@@ -40,18 +37,8 @@
         </template>
 
         <template v-slot:item="props">
-          <div class="q-pa-xs col-12">
-            <q-card flat bordered>
-              <q-card-section class="text-center">
-                Name
-                <br />
-                <strong>{{ props.row.firstName }}</strong>
-              </q-card-section>
-              <q-separator />
-              <q-card-section class="flex flex-center">
-                <div>{{ props.row.lastName }} g</div>
-              </q-card-section>
-            </q-card>
+          <div class="q-pa-sm col-12">
+            <DoctorsUserCard :modelValue="props.row"></DoctorsUserCard>
           </div>
         </template>
       </q-table>
@@ -102,7 +89,7 @@ const pagination = ref({
 <style lang="sass">
 .grid-masonry
   flex-direction: column
-  height: 700px
+
 
   &--2
     > div

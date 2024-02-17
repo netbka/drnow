@@ -61,4 +61,11 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.q-select :deep(.q-field__native) > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+</style>

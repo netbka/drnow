@@ -62,7 +62,7 @@ definePageMeta({
 const supabase = useSupabaseClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 const { query } = useRoute();
 const user = useSupabaseUser();
-const host = `${window.location.origin}`;
+
 //console.log("login", user);
 
 watchEffect(async () => {
@@ -76,6 +76,7 @@ watchEffect(async () => {
 
 const loginGithub = async () => {
   //console.log(redirectTo);
+  const host = `${window.location.origin}`;
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
@@ -101,6 +102,7 @@ const loginGithub = async () => {
 const loginGoogle = async () => {
   //const redirectTo = `${window.location.origin}${query.redirectTo}`;
   //console.log(redirectTo);
+  const host = `${window.location.origin}`;
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
@@ -118,6 +120,7 @@ const loginGoogle = async () => {
   }
 };
 const loginFacebook = async () => {
+  const host = `${window.location.origin}`;
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "facebook",
     options: {

@@ -3,12 +3,14 @@ import { type Profile } from "~/types/types";
 interface ProfileStoreState {
   profiles: Profile[];
   currentProfile: Profile;
+  profile: Profile;
 }
 
 export const useProfileStore = defineStore("ProfileStore", {
   state: (): ProfileStoreState => ({
     profiles: [],
     currentProfile: { id: 0, lastName: "", firstName: "", user_id: "", biography: "", birthDay: "", city: "", specialityId: null, speciality: {}, profilesMedicalSubSpecialities: [] },
+    profile: { id: 0, lastName: "", firstName: "", user_id: "", biography: "", birthDay: "", city: "", specialityId: null, speciality: {}, profilesMedicalSubSpecialities: [] },
   }),
 
   actions: {
@@ -17,6 +19,12 @@ export const useProfileStore = defineStore("ProfileStore", {
         method: "get",
       });
       this.profiles = data;
+    },
+    async fetchItem(id) {
+      const { data } = await useFetch("/api/profile/" + id, {
+        method: "get",
+      });
+      this.profile = data;
     },
     async fetchCurrentUser() {
       const { data } = await useFetch("/api/profile/current", {

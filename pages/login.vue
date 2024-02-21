@@ -60,27 +60,31 @@ definePageMeta({
 });
 
 const supabase = useSupabaseClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-const { query } = useRoute();
+//const { query } = useRoute();
 const user = useSupabaseUser();
 
-//console.log("login", user);
-
-watchEffect(async () => {
-  if (user.value) {
-    console.log(user.value);
-    await navigateTo(query.redirectTo as string, {
-      replace: true,
-    });
-  }
-});
+// watchEffect(async () => {
+//   if (user.value) {
+//     console.log(user.value);
+//     await navigateTo(query.redirectTo as string, {
+//       replace: true,
+//     });
+//   }
+// });
 
 const loginGithub = async () => {
+  let baseUrl;
+  if (process.env.NODE_ENV === "development") {
+    baseUrl = "http://localhost:3000";
+  } else {
+    baseUrl = "https://drnow.netlify.app/";
+  }
   //console.log(redirectTo);
-  const host = `${window.location.origin}`;
+  //const host = `${window.location.origin}`;
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
-      redirectTo: host + "/profile",
+      redirectTo: baseUrl + "/profile",
     },
   });
   if (error) {

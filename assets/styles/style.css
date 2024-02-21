@@ -48,3 +48,7 @@
   text-overflow: ellipsis;
   width: 100%;
 }
+
+.m-t-20 {
+  margin-top: 80px;
+}

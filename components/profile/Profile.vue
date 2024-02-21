@@ -62,10 +62,12 @@
 </template>
 
 <script setup>
-import { useProfileStore } from "~/stores/profile";
 import { useQuasar } from "quasar";
 const $q = useQuasar();
+
+import { useProfileStore } from "~/stores/profile";
 const store = useProfileStore();
+
 import { useMedSpecStore } from "~/stores/medspec";
 
 const storeMedSpec = useMedSpecStore();

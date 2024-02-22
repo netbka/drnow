@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-6">
             <q-item-label>{{ model.firstName }} {{ model.lastName }} </q-item-label>
-            <q-item-label caption>{{ model.speciality.name }} </q-item-label>
+            <q-item-label caption>{{ model.speciality?.name }} </q-item-label>
           </div>
           <div class="col-6 text-right">
             <q-chip square dense color="accent" outline>

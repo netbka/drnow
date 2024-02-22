@@ -14,7 +14,8 @@
     </q-card-section>
     <q-separator dark />
     <q-card-section>
-      <div id="align-left">Start: {{ formatDate(model) }}</div>
+      <div class="text-left">Start: {{ formatDate(model.start) }}</div>
+      <div class="text-left">End: {{ formatDate(model.end) }}</div>
     </q-card-section>
 
     <q-separator dark />
@@ -42,7 +43,7 @@ const props = defineProps<{
 const model = computed(() => props.event);
 
 const formatDate = (val) => {
-  return val !== null ? date.formatDate(val.start, "HH:mm") : "";
+  return val !== null ? date.formatDate(val, "HH:mm") : "";
   //return date.formatDate(val, "HH:mm");
   //return _.formatDate(val, 'YYYY-MM-DD');
 };
